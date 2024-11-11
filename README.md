@@ -10,7 +10,7 @@ Follow these steps to run the test script:
 
 This is usually found at the top of the IDE or can be opened via the IDE's menu (often under View > Terminal or similar).
 
-If you're on Windows, open a terminal as instructed above. After, click the plus symbol and open a WSL terminal. You may be prompted to install the Windows Subsystem for Linux. This will help tremendously in simplyifying the demonstration we have setup.
+If you're on Windows, open a terminal as instructed above. After, click the plus symbol and open a WSL terminal. You may be prompted to install the Windows Subsystem for Linux (WSL). This will help tremendously in simplyifying the demonstration we have setup.
 
 ### 2. Create a Virtual Environment
 
@@ -27,16 +27,10 @@ This will create a new virtual environment in a folder named `venv` in the curre
 
 Before you can start using the virtual environment, you need to activate it. 
 
-On MacOS and Linux, use the following command:
+For both MacOS and Windows WSL, use the following command:
 
 ```bash
 source venv/bin/activate
-```
-
-On Windows, if you're using WSL, the command is the same. If you're using Command Prompt or PowerShell, use this command instead:
-
-```bash
-.\venv\Scripts\activate
 ```
 
 ### 4. Run the Test Script
