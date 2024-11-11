@@ -1,4 +1,4 @@
-# Welcome to AI Conference Test Repo
+# Welcome tothe AI Conference Test Repo
 
 This repository is designed to help you test your Python environment setup. It includes a simple Python script that you can run to verify that everything is working correctly.
 
@@ -10,7 +10,7 @@ Follow these steps to run the test script:
 
 This is usually found at the top of the IDE or can be opened via the IDE's menu (often under View > Terminal or similar).
 
-If you're on Windows, open a terminal as instructed above. After, click the plus symbol and open a WSL terminal. You may be prompted to install the Windows Subsystem for Linux (WSL). This will help tremendously in simplyifying the demonstration we have setup.
+If you're on Windows, open a terminal as instructed above. After, click the plus symbol and open a WSL terminal. You may be prompted to install the Windows Subsystem for Linux (WSL). This is necessary to the demonstration.
 
 ### 2. Create a Virtual Environment
 
