@@ -1,6 +1,3 @@
-Sure, here's a sample README file for your project:
-
-```markdown:README.md
 # Welcome to AI Conference Test Repo
 
 This repository is designed to help you test your Python environment setup. It includes a simple Python script that you can run to verify that everything is working correctly.
