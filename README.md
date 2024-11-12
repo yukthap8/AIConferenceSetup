@@ -8,15 +8,15 @@ Follow these steps to run the test script:
 
 ### 1. Open Terminal
 
-This is usually found at the top of the IDE or can be opened via the IDE's menu (often under View > Terminal or similar).
+This is usually found at the top left of the IDE or can be opened via the IDE's menu (often under View > Terminal or similar).
 
-If you're on Windows, open a terminal as instructed above. After, click the plus symbol and open a WSL terminal. You may be prompted to install the Windows Subsystem for Linux (WSL). This is necessary to the demonstration.
+If you're on Windows, open a terminal as instructed above. After, click the plus symbol on the right and open a Git Bash terminal. You may be prompted to install the Windows Subsystem for Linux (WSL) extension. This is necessary to the demonstration.
 
 ### 2. Create a Virtual Environment
 
 Navigate to the directory where you cloned this repository and create a virtual environment. This will help isolate the Python environment for this project from other Python projects on your system.
 
-You can create a virtual environment using the following command:
+You can create a virtual environment using the following command in your terminal:
 ```bash
 python3 -m venv venv
 ```
