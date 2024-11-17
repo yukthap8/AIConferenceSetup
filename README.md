@@ -40,3 +40,13 @@ Now you're ready to run the test script. You can do this with the following comm
 ```bash
 python test_setup.py
 ```
+If the program is successful, it will print to the terminal. If there is an error, it might be because of the interpreter you have selected. If you encounter serious errors, refer to the FISD Slack Engineers channel for help.
+
+### 5. Deactivate the Virtual Environment
+
+Once you're done with your work, it's a good practice to deactivate your virtual environment. You can do this with the following command:
+
+```bash
+deactivate
+```
+This will deactivate your virtual environment and return you to your system's default Python environment.
