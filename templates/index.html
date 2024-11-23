@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Agentic AI System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        #status {
+            margin: 10px 0;
+            font-style: italic;
+        }
+        #transcription {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            min-height: 100px;
+        }
+        .result-section {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        .result-section h3 {
+            color: #333;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Agentic AI System</h1>
+    <div>
+        <button id="startRecording">Start Recording</button>
+        <button id="stopRecording" disabled>Stop Recording</button>
+    </div>
+    <div id="status">Ready to record</div>
+    <div id="transcription"></div>
+
+    <script>
+        let mediaRecorder;
+        let audioChunks = [];
+        const startButton = document.getElementById('startRecording');
+        const stopButton = document.getElementById('stopRecording');
+        const status = document.getElementById('status');
+        const transcription = document.getElementById('transcription');
+
+        startButton.onclick = async () => {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                mediaRecorder = new MediaRecorder(stream, {
+                    mimeType: 'audio/webm'
+                });
+                
+                mediaRecorder.ondataavailable = (event) => {
+                    audioChunks.push(event.data);
+                };
+
+                mediaRecorder.start();
+                startButton.disabled = true;
+                stopButton.disabled = false;
+                status.textContent = 'Recording...';
+            } catch (err) {
+                console.error('Error accessing microphone:', err);
+                status.textContent = 'Error accessing microphone';
+            }
+        };
+
+        stopButton.onclick = async () => {
+            if (mediaRecorder && mediaRecorder.state === 'recording') {
+                mediaRecorder.stop();
+                startButton.disabled = false;
+                stopButton.disabled = true;
+                status.textContent = 'Processing...';
+
+                mediaRecorder.onstop = async () => {
+                    const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                    const formData = new FormData();
+                    formData.append('audio_data', audioBlob);
+
+                    try {
+                        const response = await fetch('/upload', {
+                            method: 'POST',
+                            body: formData
+                        });
+
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+
+                        const data = await response.json();
+                        transcription.innerHTML = `
+                            <div class="result-section">
+                                <h3>Task:</h3>
+                                <p>${data.transcript}</p>
+                            </div>
+                            <div class="result-section">
+                                <h3>Response:</h3>
+                                <div>${data.blog_post}</div>
+                            </div>
+                        `;
+                        status.textContent = 'Processing complete';
+                    } catch (error) {
+                        console.error('Error:', error);
+                        status.textContent = 'Error during processing';
+                        transcription.textContent = 'Error: ' + error.message;
+                    }
+
+                    audioChunks = [];
+                };
+            }
+        };
+    </script>
+</body>
+</html>
