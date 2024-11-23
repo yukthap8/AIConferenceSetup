@@ -56,14 +56,11 @@ def upload():
             )
         logger.debug(f"Transcription complete: {transcript_response}")
             
-        crew = create_crew()
         with open('reference.txt', 'r') as file:
-            # reference_content = file.read()
+            reference_content = file.read()
             
-        result = crew.kickoff(inputs={
-            # "topic": ,
-            # "reference_content": 
-        })
+        crew = create_crew(transcript_response, reference_content)
+        result = crew.kickoff()
         logger.debug("Crew processing complete")
         
         return jsonify({
@@ -77,7 +74,7 @@ def upload():
 
 if __name__ == '__main__':
     try:
-        logger.info("Starting Flask server on port 6000")
+        logger.info("Starting Flask server on port 8000")
         if not os.path.exists('audio'):
             os.makedirs('audio')
         if not os.path.exists('reference.txt'):
